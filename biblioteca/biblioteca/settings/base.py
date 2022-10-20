@@ -21,11 +21,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # LOCAL APPS
-    'applications.libro',
     'applications.autor',
-    'applications.genero',
     'applications.editorial',
-    'applications.home',
+    'applications.genero',
+    'applications.libro',
+    'applications.ubicacion',
 ]
 
 MIDDLEWARE = [
