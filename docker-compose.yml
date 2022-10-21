@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: dbbakatest
+      POSTGRES_PASSWORD: admin1234
+      POSTGRES_USER: admin1234
+    ports:
+       - 5432:5432
+    volumes:
+      # - <TU_RUTA_AQUÍ>:/var/lib/postgresql
+      - /home/chema.segarra/pfs-group/test/postgreSQL/data:/var/lib/postgresql
