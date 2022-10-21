@@ -1,66 +1,60 @@
-from typing import List
 from django.shortcuts import render
+from django.urls import reverse_lazy
 
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 from .models import Libro
 
 
+# Inicio para los Libros :: inicio
+class LibroInicioTemplateView(TemplateView):
+    template_name = 'libro/inicio.html'
+
+
+# Listar todos los libros :: listar
 class ListAllLibros(ListView):
     template_name = 'libro/listar_libros.html'
-    model = Libro
-    paginate_by = 1
-    ordering = 'titulo'
-    # context_object_name = 'libros'
-
-    # def get_queryset(self):
-
-    #     lista = Libro.objects.filter(
-    #         autor__nombre='Arturo'
-    #     )
-    #     return lista
-
-
-class ListAllLibrosByAutor(ListView):
-    template_name = 'libro/listar_libros_by_autor.html'
     # model = Libro
-    # context_object_name = 'libros'
-
-    def get_queryset(self):
-
-        busqueda = self.kwargs['autor']
-        print(busqueda)
-
-        libro = Libro.objects.get(id=4)
-        print(libro.autor.all())
-
-        lista = Libro.objects.filter(
-            autor__nombre=busqueda
-        )
-
-        print(lista)
-        return lista
-
-
-class ListLibrosByKwords(ListView):
-
-    template_name = 'libro/listar_libros_by_kwords.html'
+    paginate_by = 12
+    ordering = 'titulo'
     context_object_name = 'libros'
 
     def get_queryset(self):
-        kword = self.request.GET.get('kwords', '')
-
+        palabra_clave = self.request.GET.get('kword', '')
+        
         lista = Libro.objects.filter(
-            editorial__nombre=kword
+            titulo__icontains=palabra_clave
         )
-
         return lista
 
+
+# Ver la información del libro :: detalles
 class LibroDetailView(DetailView):
     model = Libro
     template_name = 'libro/ver_libro.html'
 
-    def get_context_data(self, **kwargs):
-        context =  super().get_context_data(**kwargs)
-        context['estrella'] = 'El mejor libro'
 
-        return context
+# Añadir un nuevo libro :: add
+class LibroCreateView(CreateView):
+    template_name = "libro/add_libro.html"
+    model = Libro
+    fields = ('__all__')
+    success_url = reverse_lazy('libro_app:listar')
+
+    # def form_valid(self, form):      
+    #     return super().form_valid(form)
+
+
+# Modificar el libro :: edit
+class LibroUpdateView(UpdateView):
+    template_name = 'libro/edit_libro.html'
+    model = Libro
+    fields = ('__all__')
+    success_url = reverse_lazy('libro_app:listar')
+
+
+# Eliminar libro :: delete
+class LibroDeleteView(DeleteView):
+    template_name = 'libro/delete_libro.html'
+    model = Libro
+    fields = ('__all__')
+    success_url = reverse_lazy('libro_app:listar')

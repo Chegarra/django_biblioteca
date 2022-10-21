@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}MyBiblio - Eliminar {{ libro.titulo }} {% endblock title %}
+{% block content %}
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x align-center" style="padding-bottom: 25px;">
+        <div class="cell large-12">
+            <h2 style="text-align: center;">Eliminar <b>{{ libro.titulo }}</b></h2>
+        </div>
+    </div>
+
+    <div class="grid-x align-center align-middle">
+        <form class="cell large-8" method="POST">{% csrf_token %}
+            <div class="callout alert" style="text-align: center;">
+                <p>¿Desea eliminar el libro <b>{{ libro.titulo }}</b> ( ISBN: {{libro.isbn}} )?</p>
+                <button class="button alert" type="submit">Confirmar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="grid-x align-center">
+        <div class="cell large-1">
+            <input type="button" class="button secondary clear" onclick="history.back()" name="Volver" value="Volver">
+        </div>
+    </div>
+
+</div>
+{% endblock content %}

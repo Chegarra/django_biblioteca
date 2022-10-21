@@ -1,40 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listar libros</title>
-</head>
-<body>
-    <h1>Listar Libros</h1>
+{% extends 'base.html' %}
+{% block title %}MyBiblio - Lista de libros{% endblock title %}
+{% block content %}
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x align-center" style="padding-bottom: 25px;">
+        <div class="cell large-12">
+            <h2 style="text-align: center;">Lista de <b>libros</b></h2>
+        </div>
+    </div>
 
-    <ul>
-        {% for l in object_list %}
-            <li>
-                {{ l }}
-            </li>
-        {% endfor %}
 
-    </ul>
+    <div class="grid-x">
+        <form method="GET" class="cell grid-x grid-margin-x">{% csrf_token %}
+            <div class="cell large-4">
+                <input type="text" placeholder="Buscar Libro">
+            </div>
+            <div class="cell large-2">
+                <button type="submit" id="kword" name="kword" class="primay button">Buscar</button>
+            </div>
+        </form>
+        <div class="cell">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="200" style="text-align: center;">Título</th>
+                        <th width="200" style="text-align: center;">Autor</th>
+                        <th width="100" style="text-align: center;">Género</th>
+                        <th width="150" style="text-align: center;">Editorial</th>
+                        <th width="100" style="text-align: center;">ISBN</th>
+                        <th width="150" style="text-align: center;">Ubicación</th>
+                        <th width="150" style="text-align: center;">Acción</th>
+                    </tr>
+                </thead>
+                <tbody style=" font-size: 12px;">
+                    {% for l in libros %}
+                    <tr>
+                        <td>{{ l.titulo }}</td>
+                        <td>
+                            <ul style="list-style: none;">
+                                {% for a in l.autor.all %}
+                                    <li>
+                                        {{ a.nombre }} {{ a.apellidos }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </td>
+                        <td style="text-align: center;">
+                            <span data-tooltip tabindex="1" title="{{ l.genero.nombre }}">
+                                {{ l.genero.codigo }}
+                            </span>
+                        </td>
+                        <td style="text-align: center;">{{ l.editorial }}</td>
+                        <td style="text-align: center;">{{ l.isbn }}</td>
+                        <td style="text-align: center;">
+                            <span data-tooltip tabindex="1" title="{{ l.ubicacion.nombre }}">
+                                {{ l.ubicacion.codigo }}
+                            </span>
+                        </td>
+                        <td style="text-align: center;">
+                            <a class="button success tiny" href="{% url 'libro_app:detalles' l.id %}">V</a>
+                            <a class="button warning tiny" href="{% url 'libro_app:edit' l.id %}">M</a>
+                            <a class="button alert tiny" href="{% url 'libro_app:delete' l.id %}">E</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-    <p class="pagination">
-        <span class="step-links">
-            {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; Primera</a>
-                <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+        <div class="cell">
+            {% if is_paginated %}
+            <nav aria-label="Pagination">
+                <ul class="pagination text-center">
+                    {% if page_obj.has_previous %}
+                        <li class="pagination-previous">
+                            <a href="?page={{ page_obj.previous_page_number }}" aria-label="Anterior">
+                                Anterior
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for pag in paginator.page_range %}
+                        
+                        {% if pag == page_obj.number %}
+                            <li class="current">
+                                <span class="show-for-sr">Estás en la pag.</span>{{ pag }}
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="?page={{ pag }}" aria-label="Pag. {{ pag }}">{{ pag }}</a>
+                            </li>                            
+                        {% endif %}
+
+                    {% endfor%}
+
+                    {% if page_obj.has_next %}
+                        <li class="pagination-next">
+                            <a href="?page={{ page_obj.next_page_number }}" aria-label="Siguiente">
+                                Siguiente
+                            </a>
+                        </li>
+                    {% endif %}
+
+                </ul>
+            </nav>
             {% endif %}
-    
-            <span class="current">
-                Pag. {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
-            </span>
-    
-            {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
-            {% endif %}
-        </span>
-    </p>
-    
-</body>
-</html>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock content %}
