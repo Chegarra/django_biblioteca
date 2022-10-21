@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}MyBiblio - Pag. Editorial {% endblock title %}
+{% block content %}
+    {% include 'includes/header.html' %}
+    <div class="grid-x align-center">
+        <div class="cell large-12">
+            <h2 style="text-align: center;"><b>E D I T O R I A L<b></h2>
+        </div>
+    </div>
+    <div class="grid-x align-center">
+        <div class="cell large-12" style="padding-bottom:25px;">
+            <h5 style="text-align: center; font-style: italic;">Página inicial para gestionar las <i>editoriales</i></h5>
+        </div>
+
+        <div class="cell grid-x large-12 grid-padding-x align-center">
+            <div class="cell grid-x large-6 align-center align-middle">
+                <div class="cell large-12">
+                    <div class="callout success" style="text-align: center;">
+                        <p>Da de alta las nuevas editoriales en <i>MyBiblio</i></p>
+                        <a class="button success" href="{% url 'editorial_app:add' %}">Añadir</a>
+                      </div>
+                </div>
+
+                <div class="cell large-12">
+                    <div class="callout primary" style="text-align: center;">
+                        <p>Gestiona tus editoriales: Consulta, Modifica y Borra</p>
+                        <a class="button primary" href="{% url 'editorial_app:listar' %}">Gestionar</a>
+                      </div>
+                </div>     
+            </div>
+            <div class="cell grid-x large-6 align-middle align-center">
+                <img class="max-width: 400px; height: auto;" src="{% static 'img/editorial_main.jpg' %}">
+            </div>
+        </div>
+    </div>
+{% endblock content %}

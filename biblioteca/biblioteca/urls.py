@@ -23,6 +23,6 @@ urlpatterns = [
     path('', include('applications.autor.urls')),
     path('', include('applications.ubicacion.urls')),
     path('', include('applications.home.urls')),
-    path('', include('applications.genero.urls'))
-
+    path('', include('applications.genero.urls')),
+    path('', include('applications.editorial.urls'))
 ]
