@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Bienvenidos a tu biblioteca personal{% endblock title %}
+{% block content %}
+    {% include 'includes/header.html' %}
+    <div class="grid-x align-center">
+        <div class="cell large-12">
+            <h2 style="text-align: center;">Bienvenido a <b>MyBiblio<b></h2>
+        </div>
+    </div>
+    <div class="grid-x align-center">
+        <div class="cell large-12" style="padding-bottom:25px;">
+            <h5 style="text-align: center; font-style: italic;">Tu gestor de biblioteca sencillo y efectivo</h5>
+        </div>
+        <div class="cell grid-x large-12 grid-padding-x">
+            <div class="cell large-4">
+                <div class="callout secondary" style="text-align: center;">
+                    <h5>Añade</h5>
+                    <p>Da el salto tecnológico e inserta tus libros en <i>MyBiblio</i></p>
+                  </div>
+            </div>
+            <div class="cell large-4">
+                <div class="callout primary" style="text-align: center;">
+                    <h5>Gestiona</h5>
+                    <p>Ten el control de todos los libros de tu biblioteca gracias a <i>MyBiblio</i></p>
+                  </div>
+            </div>
+            <div class="cell large-4">
+                <div class="callout success" style="text-align: center;">
+                    <h5>Encuentra</h5>
+                    <p>Consulta en <i>MyBiblio</i> tu libro que buscas y encuentralo fácilmente</p>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock content %}

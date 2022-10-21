@@ -1,0 +1,46 @@
+{% load static %}
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+    <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+    <div class="title-bar-title">Menu</div>
+</div>
+
+<div class="top-bar" id="responsive-menu">
+    <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+            <li class="menu-text">MyBiblio</li>
+            <li><a href="{% url 'home_app:inicio' %}">Inicio</a></li>
+            <li><a href="{% url 'libro_app:inicio' %}">Libros</a></li>
+            <li><a href="#0">Autores</a></li>
+            <li><a href="#0">Géneros</a></li>
+            <li><a href="{% url 'ubicacion_app:inicio' %}">Ubicaciones</a></li>
+            <li><a href="#0">Editoriales</a></li>
+            <li class="has-submenu">
+                <a href="#0">Listar</a>
+                <ul class="submenu menu vertical" data-submenu>
+                    <li><a href="{% url 'libro_app:listar' %}">Libros</a></li>
+                    <li><a href="#0">Autores</a></li>
+                    <li><a href="#0">Géneros</a></li>
+                    <li><a href="#0">Ubicaciones</a></li>
+                    <li><a href="#0">Editoriales</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            <li><input type="search" placeholder="Buscar"></li>
+            <li><button type="button" class="button">Buscar</button></li>
+        </ul>
+    </div>
+</div>
+<div class="orbit" role="region" aria-label="Header images MyBiblio" data-orbit style="padding-bottom: 25px;">
+    <div class="orbit-wrapper">
+        <ul class="orbit-container">
+            <li class="is-active orbit-slide">
+                <figure class="orbit-figure">
+                    <img class="orbit-image" src="{% static 'img/header-large.jpg' %}" alt="Books">
+                </figure>
+            </li>
+        </ul>
+    </div>
+</div>
