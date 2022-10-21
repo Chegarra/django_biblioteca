@@ -11,7 +11,7 @@
             <li><a href="{% url 'home_app:inicio' %}">Inicio</a></li>
             <li><a href="{% url 'libro_app:inicio' %}">Libros</a></li>
             <li><a href="#0">Autores</a></li>
-            <li><a href="#0">Géneros</a></li>
+            <li><a href="{% url 'genero_app:inicio' %}">Géneros</a></li>
             <li><a href="{% url 'ubicacion_app:inicio' %}">Ubicaciones</a></li>
             <li><a href="#0">Editoriales</a></li>
             <li class="has-submenu">
@@ -19,7 +19,7 @@
                 <ul class="submenu menu vertical" data-submenu>
                     <li><a href="{% url 'libro_app:listar' %}">Libros</a></li>
                     <li><a href="#0">Autores</a></li>
-                    <li><a href="#0">Géneros</a></li>
+                    <li><a href="{% url 'genero_app:listar' %}">Géneros</a></li>
                     <li><a href="#0">Ubicaciones</a></li>
                     <li><a href="#0">Editoriales</a></li>
                 </ul>
