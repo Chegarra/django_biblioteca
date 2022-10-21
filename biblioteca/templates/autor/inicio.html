@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}MyBiblio - Pag. Autor {% endblock title %}
+{% block content %}
+    {% include 'includes/header.html' %}
+    <div class="grid-x align-center">
+        <div class="cell large-12">
+            <h2 style="text-align: center;"><b>A U T O R<b></h2>
+        </div>
+    </div>
+    <div class="grid-x align-center">
+        <div class="cell large-12" style="padding-bottom:25px;">
+            <h5 style="text-align: center; font-style: italic;">Página inicial para gestionar los <i>autores</i></h5>
+        </div>
+
+        <div class="cell grid-x large-12 grid-padding-x align-center">
+            <div class="cell grid-x large-6 align-center align-middle">
+                <div class="cell large-12">
+                    <div class="callout success" style="text-align: center;">
+                        <p>Da de alta las nuevas autores en <i>MyBiblio</i></p>
+                        <a class="button success" href="{% url 'autor_app:add' %}">Añadir</a>
+                      </div>
+                </div>
+
+                <div class="cell large-12">
+                    <div class="callout primary" style="text-align: center;">
+                        <p>Gestiona los autores: Consulta, Modifica y Borra</p>
+                        <a class="button primary" href="{% url 'autor_app:listar' %}">Gestionar</a>
+                      </div>
+                </div>     
+            </div>
+            <div class="cell grid-x large-6 align-middle align-center">
+                <img class="max-width: 400px; height: auto;" src="{% static 'img/editorial_main.jpg' %}">
+            </div>
+        </div>
+    </div>
+{% endblock content %}

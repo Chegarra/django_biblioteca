@@ -1,18 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrar Autor</title>
-</head>
-<body>
-    <h1>Registrar Autor</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}MyBiblio - Añadir Autor {% endblock title %}
+{% block content %}
+{% include 'includes/header.html' %}
+<div class="grid-container">
+    <div class="grid-x align-center" style="padding-bottom: 25px;">
+        <div class="cell large-12">
+            <h2 style="text-align: center;">Añadir <b>Autor</b></h2>
+        </div>
+    </div>
 
-    <form action="" method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Añadir</button>
-    </form>
+    <div class="grid-x align-center align-middle">
+        <form class="cell large-6" action="" method="post">{% csrf_token %}
+            {{ form.as_p }}
+            <p style="text-align:right; padding-top: 25px;">
+                <button class="button primary align-rigth" type="submit">Añadir</button>
+            </p>
+        </form>
+    </div> 
 
-</body>
-</html>
+</div>
+{% endblock content %}
